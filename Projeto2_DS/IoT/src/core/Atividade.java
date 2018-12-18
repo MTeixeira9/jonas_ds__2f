@@ -12,6 +12,7 @@ public class Atividade extends Event{
 	private String divisao;
 	
 	public Atividade(Date dataInicio, Date dataFim, String divisao) {
+		this.id = id;
 		this.dataInicio = dataInicio;
 		this.dataFim = dataFim;
 		this.divisao = divisao;
