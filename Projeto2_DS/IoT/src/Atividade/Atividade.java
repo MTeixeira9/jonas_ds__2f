@@ -1,28 +1,30 @@
-package core;
-
-import java.sql.Date;
+package Atividade;
 
 import com.bezirk.middleware.messages.Event;
 
 public class Atividade extends Event{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int id;
-	private Date dataInicio;
-	private Date dataFim;
+	private String dataInicio;
+	private String dataFim;
 	private String divisao;
 	
-	public Atividade(Date dataInicio, Date dataFim, String divisao) {
+	public Atividade(String dataInicio, String dataFim, String divisao) {
 		this.id = id;
 		this.dataInicio = dataInicio;
 		this.dataFim = dataFim;
 		this.divisao = divisao;
 	}
 	
-	public Date getDataInicio() {
+	public String getDataInicio() {
 		return dataInicio;
 	}
 	
-	public Date getDataFim() {
+	public String getDataFim() {
 		return dataFim;
 	}
 	
