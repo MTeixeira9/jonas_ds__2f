@@ -1,4 +1,4 @@
-package core;
+package contactos;
 
 public class Contacto {
 	
@@ -6,7 +6,8 @@ public class Contacto {
 	private String nome;
 	private int numero;
 	
-	public Contacto(String nome, int numero) {
+	public Contacto(int id, String nome, int numero) {
+		this.id = id;
 		this.nome = nome;
 		this.numero = numero;
 	}
@@ -21,14 +22,6 @@ public class Contacto {
 	
 	public int getNumero() {
 		return numero;
-	}
-	
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-	
-	public void setNumero(int numero) {
-		this.numero = numero;
 	}
 	
 	public String toString() {

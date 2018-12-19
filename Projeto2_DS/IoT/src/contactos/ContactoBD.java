@@ -1,4 +1,4 @@
-package Atividade;
+package contactos;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -9,13 +9,12 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class MonitorAtividadeBD {
+import atividade.Atividade;
+
+public class ContactoBD {
+	private static final String URL = "jdbc:sqlite:contacto.db";
 	
-	private static Matcher matcher;
-	private static Pattern pattern;
-	private static final String URL = "jdbc:sqlite:monitor_atividade.bd";
-	
-	public MonitorAtividadeBD() throws ClassNotFoundException {
+	public ContactoBD() throws ClassNotFoundException {
 		Connection con = null;
 		try{
 			Class.forName("org.sqlite.JDBC");
@@ -28,11 +27,10 @@ public class MonitorAtividadeBD {
 	}
 
 	public void criaTabela() {
-		String query = "CREATE TABLE IF NOT EXISTS atividade"
+		String query = "CREATE TABLE IF NOT EXISTS contacto"
 				+ "(ID integer PRIMARY KEY autoincrement,"
-				+ " DATA_INICIO TEXT NOT NULL,"
-				+ " DATA_FIM TEXT NOT NULL,"
-				+ " DIVISAO TEXT NOT NULL);";
+				+ " NOME TEXT NOT NULL,"
+				+ " NUMERO TEXT NOT NULL);";
 		
 		try (Connection con = DriverManager.getConnection(URL);
 				Statement statement = con.createStatement()){
@@ -42,48 +40,45 @@ public class MonitorAtividadeBD {
 		}				
 	}
 	
-	public void insert(String dataI, String dataF, String divisao) {
-		String query = "INSERT INTO atividade"
-				+ "(DATA_INICIO, DATA_FIM, DIVISAO)"
-				+ " VALUES('" + dataI + "','" + dataF + "','" + divisao + "');";
+	public void insert(String nome, String numero) {
+		String query = "INSERT INTO contacto"
+				+ "(NOME, NUMERO)"
+				+ " VALUES('" + nome + "','" + numero +"');";
 		
 		try (Connection con = DriverManager.getConnection(URL);
 				Statement statement = con.createStatement()){
 			statement.execute(query);
-			System.out.println("Atividade inserida com sucesso!");
+			System.out.println("Contacto inserida com sucesso!");
 		} catch (SQLException e) {
 			System.err.println(e.getMessage());
 		}
 	}
 	
-	public ArrayList<Atividade> getAtividade(){
+	public ArrayList<Contacto> getContactos(){
 		ResultSet res;
-		String query = "SELECT * FROM atividade;";
-		ArrayList<Atividade> atividades = null;
+		String query = "SELECT * FROM contacto;";
+		ArrayList<Contacto> contactos = null;
 		
 		try (Connection con = DriverManager.getConnection(URL);
 				Statement statement = con.createStatement()){
-			atividades = new ArrayList<Atividade>();
+			contactos = new ArrayList<Contacto>();
 			res = statement.executeQuery(query);
 			
 			while (res.next()) {
 				int id = res.getInt("ID");
-				String dataI = res.getString("DATA_INICIO");
-				String dataF = res.getString("DATA_FIM");
-				String divisao = res.getString("DIVISAO");
+				String nome = res.getString("NOME");
+				int numero = res.getInt("NUMERO");
 				
-				Atividade a = new Atividade(dataI, dataF, divisao);
-				atividades.add(a);
+				Contacto c = new Contacto(id, nome, numero);
+				contactos.add(c);
 			}
 			
 		} catch (SQLException e) {
 			System.err.println(e.getMessage());
 		}
 		
-		return atividades;
+		return contactos;
 		
 	}
-	
-	//TODO atividadesDetetadas
 
 }

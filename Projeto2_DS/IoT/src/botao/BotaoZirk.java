@@ -1,15 +1,15 @@
-package core;
+package botao;
 
 import com.bezirk.middleware.Bezirk;
 import com.bezirk.middleware.java.proxy.BezirkMiddleware;
 
-public class BotaoSensorMock {
+public class BotaoZirk {
 	
 	private static final String ID = "BotaoSensor";
 	
 	private Bezirk bezirk;
 	
-	public BotaoSensorMock() {
+	public BotaoZirk() {
 		BezirkMiddleware.initialize();
 		bezirk = BezirkMiddleware.registerZirk(ID);
 	}
@@ -20,7 +20,7 @@ public class BotaoSensorMock {
 	}
 
 	public static void main (String [] args) {
-		BotaoSensorMock botaoSensor = new BotaoSensorMock();
+		BotaoZirk botaoSensor = new BotaoZirk();
 		botaoSensor.pushBotao();
 	}
 }

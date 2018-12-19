@@ -1,4 +1,4 @@
-package Atividade;
+package atividade;
 
 import static i18n.Messages.DEVICE_RUNNING;
 

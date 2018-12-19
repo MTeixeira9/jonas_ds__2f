@@ -1,4 +1,4 @@
-package Atividade;
+package atividade;
 
 import com.bezirk.middleware.messages.Event;
 

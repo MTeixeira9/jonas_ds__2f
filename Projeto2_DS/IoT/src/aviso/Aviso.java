@@ -1,4 +1,4 @@
-package core;
+package aviso;
 
 import java.sql.Date;
 
@@ -6,11 +6,12 @@ public class Aviso {
 	
 	private int id;
 	private String msg;
-	private Date dataInicio;
-	private Date dataFim;
+	private String dataInicio;
+	private String dataFim;
 	private int periodicidade;
 	
-	public Aviso(String msg, Date dataInicio, Date dataFim, int periodicidade) {
+	public Aviso(int id, String msg, String dataInicio, String dataFim, int periodicidade) {
+		this.id = id;
 		this.msg = msg;
 		this.dataInicio = dataInicio;
 		this.dataFim = dataFim;
@@ -21,11 +22,11 @@ public class Aviso {
 		return msg;
 	}
 	
-	public Date getDataFim() {
+	public String getDataFim() {
 		return dataFim;
 	}
 
-	public Date getDataInicio() {
+	public String getDataInicio() {
 		return dataInicio;
 	}
 	

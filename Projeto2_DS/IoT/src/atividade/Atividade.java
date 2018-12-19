@@ -1,4 +1,4 @@
-package Atividade;
+package atividade;
 
 import com.bezirk.middleware.messages.Event;
 
@@ -13,7 +13,7 @@ public class Atividade extends Event{
 	private String dataFim;
 	private String divisao;
 	
-	public Atividade(String dataInicio, String dataFim, String divisao) {
+	public Atividade(int id, String dataInicio, String dataFim, String divisao) {
 		this.id = id;
 		this.dataInicio = dataInicio;
 		this.dataFim = dataFim;
