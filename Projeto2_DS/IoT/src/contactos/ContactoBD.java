@@ -1,84 +1,66 @@
 package contactos;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import atividade.Atividade;
 
 public class ContactoBD {
-	private static final String URL = "jdbc:sqlite:contacto.db";
-	
-	public ContactoBD() throws ClassNotFoundException {
-		Connection con = null;
-		try{
-			Class.forName("org.sqlite.JDBC");
-			con = DriverManager.getConnection(URL);
-			criaTabela();
-			
-		}catch (SQLException e) {
-			System.err.println(e.getMessage());
+	private static final String F_NOME = "contactos.txt";
+	private File contactos;
+
+	public ContactoBD() {
+		contactos = new File(F_NOME);
+		criar();
+	}
+
+	public void criar() {
+
+		try {
+			if (!contactos.exists()) {
+				contactos.createNewFile();
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 
-	public void criaTabela() {
-		String query = "CREATE TABLE IF NOT EXISTS contacto"
-				+ "(ID integer PRIMARY KEY autoincrement,"
-				+ " NOME TEXT NOT NULL,"
-				+ " NUMERO TEXT NOT NULL);";
-		
-		try (Connection con = DriverManager.getConnection(URL);
-				Statement statement = con.createStatement()){
-			statement.execute(query);
-		} catch (SQLException e) {
-			System.err.println(e.getMessage());
-		}				
-	}
-	
-	public void insert(String nome, String numero) {
-		String query = "INSERT INTO contacto"
-				+ "(NOME, NUMERO)"
-				+ " VALUES('" + nome + "','" + numero +"');";
-		
-		try (Connection con = DriverManager.getConnection(URL);
-				Statement statement = con.createStatement()){
-			statement.execute(query);
-			System.out.println("Contacto inserida com sucesso!");
-		} catch (SQLException e) {
-			System.err.println(e.getMessage());
+	public void insert(String nome, String numero) throws IOException {
+
+		BufferedReader br = new BufferedReader(new FileReader(contactos));
+		int id = 0;
+		while (br.readLine() != null) {
+			id++;
 		}
+		br.close();
+
+		BufferedWriter bw = new BufferedWriter(new FileWriter(contactos, true));
+		bw.write(id + "|" + nome + "|" + numero);
+		bw.newLine();
+		bw.flush();
+		bw.close();
+
 	}
-	
-	public ArrayList<Contacto> getContactos(){
-		ResultSet res;
-		String query = "SELECT * FROM contacto;";
-		ArrayList<Contacto> contactos = null;
-		
-		try (Connection con = DriverManager.getConnection(URL);
-				Statement statement = con.createStatement()){
-			contactos = new ArrayList<Contacto>();
-			res = statement.executeQuery(query);
-			
-			while (res.next()) {
-				int id = res.getInt("ID");
-				String nome = res.getString("NOME");
-				int numero = res.getInt("NUMERO");
-				
-				Contacto c = new Contacto(id, nome, numero);
-				contactos.add(c);
-			}
-			
-		} catch (SQLException e) {
-			System.err.println(e.getMessage());
+
+	public ArrayList<Contacto> getContactos() throws NumberFormatException, IOException{
+		ArrayList<Contacto> res = new ArrayList<Contacto>();
+
+		BufferedReader br = new BufferedReader(new FileReader(contactos));
+		String ln = null;
+		while ((ln = br.readLine()) != null) {
+			String[] info = ln.split("\\|");
+			int id = Integer.parseInt(info[0]);
+			String nome = info[1];
+			int numero = Integer.parseInt(info[2]);
+			res.add(new Contacto(id, nome, numero));
 		}
-		
-		return contactos;
-		
+		br.close();
+
+		return res;
+
 	}
 
 }

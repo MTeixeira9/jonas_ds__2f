@@ -1,5 +1,13 @@
 package aviso;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -10,80 +18,97 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import atividade.Atividade;
+import contactos.Contacto;
 
 public class AvisoBD {
 	
-	private static final String URL = "jdbc:sqlite:aviso.db";
+	private static final String F_NOME = "avisos.txt";
+	private File avisos;
 	
 	public AvisoBD() throws ClassNotFoundException {
-		Connection con = null;
-		try{
-			Class.forName("org.sqlite.JDBC");
-			con = DriverManager.getConnection(URL);
-			criaTabela();
+		avisos = new File(F_NOME);
+		criar();
 			
-		}catch (SQLException e) {
-			System.err.println(e.getMessage());
-		}
+		
 	}
 
-	public void criaTabela() {
-		String query = "CREATE TABLE IF NOT EXISTS aviso"
-				+ "(ID integer PRIMARY KEY autoincrement,"
-				+ " MSG TEXT NOT NULL,"
-				+ " DATA_INICIO TEXT NOT NULL,"
-				+ " DATA_FIM TEXT NOT NULL,"
-				+ " PERIODICIDADE TEXT NOT NULL);";
+	public void criar() {
 		
-		try (Connection con = DriverManager.getConnection(URL);
-				Statement statement = con.createStatement()){
-			statement.execute(query);
-		} catch (SQLException e) {
-			System.err.println(e.getMessage());
-		}				
-	}
-	
-	public void insert(String msg, String dataI, String dataF, String period) {
-		String query = "INSERT INTO atividade"
-				+ "(MSG, DATA_INICIO, DATA_FIM, PERIODICIDADE)"
-				+ " VALUES('" + msg + "','" + dataI + "','" + dataF + "','" + period + "');";
-		
-		try (Connection con = DriverManager.getConnection(URL);
-				Statement statement = con.createStatement()){
-			statement.execute(query);
-			System.out.println("Aviso inserido com sucesso!");
-		} catch (SQLException e) {
-			System.err.println(e.getMessage());
+		try {
+			if (!avisos.exists()) {
+				avisos.createNewFile();
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
+		
+		
 	}
 	
-	public ArrayList<Aviso> getAviso(){
-		ResultSet res;
-		String query = "SELECT * FROM aviso;";
-		ArrayList<Aviso> avisos = null;
+	public void insert(String msg, String dataI, String dataF, String period) throws IOException {
 		
-		try (Connection con = DriverManager.getConnection(URL);
-				Statement statement = con.createStatement()){
-			avisos = new ArrayList<Aviso>();
-			res = statement.executeQuery(query);
+		BufferedReader br = new BufferedReader(new FileReader(avisos));
+		int id = 0;
+		String ln = null;
+		while ((ln = br.readLine()) != null) {
+			id = Integer.parseInt(ln.split("\\|")[0]);
+		}
+		br.close();
+		
+		id = id+1;
+
+		BufferedWriter bw = new BufferedWriter(new FileWriter(avisos, true));
+		bw.write(id + "|" + msg + "|" + dataI + "|" + dataF + "|" + period);
+		bw.newLine();
+		bw.flush();
+		bw.close();
+		
+	}
+	
+	public ArrayList<Aviso> getAvisos() throws IOException{
+		
+		ArrayList<Aviso> res = new ArrayList<Aviso>();
+
+		BufferedReader br = new BufferedReader(new FileReader(avisos));
+		String ln = null;
+		while ((ln = br.readLine()) != null) {
+			String[] info = ln.split("\\|");
+			int id = Integer.parseInt(info[0]);
+			String msg = info[1];
+			String dataI = info[2];
+			String dataF = info[3];
+			int period = Integer.parseInt(info[4]);
+			res.add(new Aviso(id, msg, dataI, dataF,period ));
+		}
+		br.close();
+
+		return res;
+		
+	}
+
+	
+	public void delete(int idApagar) throws IOException {
+		BufferedReader brD = new BufferedReader(new FileReader(avisos));
+		File temp = new File (avisos.getAbsolutePath() + ".tmp");
+		PrintWriter pw = new PrintWriter(new FileWriter(temp));
+		String ln = null;
+		
+		while((ln = brD.readLine()) != null) {
 			
-			while (res.next()) {
-				int id = res.getInt("ID");
-				String msg = res.getString("MSG");
-				String dataI = res.getString("DATA_INICIO");
-				String dataF = res.getString("DATA_FIM");
-				int period = res.getInt("PERIODICIDADE");
-				
-				Aviso a = new Aviso(id, msg, dataI, dataF, period);
-				avisos.add(a);
+			String [] split = ln.split("\\|");
+			int id = Integer.parseInt(split[0]);
+			
+			if(id != idApagar) {
+				pw.println(ln);
+				pw.flush();
 			}
 			
-		} catch (SQLException e) {
-			System.err.println(e.getMessage());
 		}
-		
-		return avisos;
-		
+		pw.close();
+		brD.close();
+		avisos.delete();
+		temp.renameTo(avisos);
+			
 	}
 
 }

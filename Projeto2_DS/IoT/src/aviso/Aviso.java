@@ -34,4 +34,13 @@ public class Aviso {
 		return periodicidade;
 	}
 	
+	public int getId() {
+		return id;
+	}
+	
+	@Override
+	public String toString() {
+		return this.id + "--->" + this.msg + " de " + this.dataInicio + " ate " + this.dataFim;
+	}
+	
 }
