@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import atividade.Atividade;
 import atividade.AtividadeBD;
 import aviso.Aviso;
 import aviso.AvisoBD;
@@ -102,21 +103,24 @@ public class UI {
 				break;
 			}
 			
+			//Simular evento de atividade
 			case 4: {
+				
+				
 				break;
 			}
 			
+			//Simular um evento de inatividade
 			case 5: {
 				break;
 			}
 			
+			//para terminar
 			case 6: {
+				acabou = true;
 				break;
 			}
 			
-			case 7: {
-				break;
-			}
 			
 			default: {
 				break;

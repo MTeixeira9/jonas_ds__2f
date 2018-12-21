@@ -1,5 +1,12 @@
 package inatividade;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -13,76 +20,58 @@ import atividade.Atividade;
 
 public class InatividadeBD {
 	
-	//private static Matcher matcher;
-	//private static Pattern pattern;
-	private static final String URL = "jdbc:sqlite:inatividade.db";
+	private static final String F_NOME = "inatividades.txt";
+	private File inatividades;
 	
 	public InatividadeBD() throws ClassNotFoundException {
-		Connection con = null;
-		try{
-			Class.forName("org.sqlite.JDBC");
-			con = DriverManager.getConnection(URL);
-			criaTabela();
-			
-		}catch (SQLException e) {
-			System.err.println(e.getMessage());
-		}
+		inatividades = new File(F_NOME);
+		criar();
 	}
 
-	public void criaTabela() {
-		String query = "CREATE TABLE IF NOT EXISTS inatividade"
-				+ "(ID integer PRIMARY KEY autoincrement,"
-				+ " DATA_INICIO TEXT NOT NULL,"
-				+ " DATA_FIM TEXT NOT NULL,"
-				+ " PERIODO TEXT NOT NULL);";
-		
-		try (Connection con = DriverManager.getConnection(URL);
-				Statement statement = con.createStatement()){
-			statement.execute(query);
-		} catch (SQLException e) {
-			System.err.println(e.getMessage());
-		}				
-	}
-	
-	public void insert(String dataI, String dataF, String divisao) {
-		String query = "INSERT INTO inatividade"
-				+ "(DATA_INICIO, DATA_FIM, PERIODO)"
-				+ " VALUES('" + dataI + "','" + dataF + "','" + divisao + "');";
-		
-		try (Connection con = DriverManager.getConnection(URL);
-				Statement statement = con.createStatement()){
-			statement.execute(query);
-			System.out.println("Inatividade inserida com sucesso!");
-		} catch (SQLException e) {
-			System.err.println(e.getMessage());
-		}
-	}
-	
-	public ArrayList<Inatividade> getInatividades(){
-		ResultSet res;
-		String query = "SELECT * FROM inatividade;";
-		ArrayList<Inatividade> inatividades = null;
-		
-		try (Connection con = DriverManager.getConnection(URL);
-				Statement statement = con.createStatement()){
-			inatividades = new ArrayList<Inatividade>();
-			res = statement.executeQuery(query);
-			
-			while (res.next()) {
-				int id = res.getInt("ID");
-				String dataI = res.getString("DATA_INICIO");
-				String dataF = res.getString("DATA_FIM");
-				String periodo = res.getString("PERIODO");
-				
-				Inatividade i = new Inatividade(id, dataI, dataF, periodo);
-				inatividades.add(i);
+	public void criar() {
+		try {
+			if (!inatividades.exists()) {
+				inatividades.createNewFile();
 			}
-			
-		} catch (SQLException e) {
-			System.err.println(e.getMessage());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}		
+	}
+	
+	public void insert(String dataI, String dataF, String duracao) throws IOException {
+		BufferedReader br = new BufferedReader(new FileReader(inatividades));
+		int id = 0;
+		String ln = null;
+		while ((ln = br.readLine()) != null) {
+			id = Integer.parseInt(ln.split("\\|")[0]);
 		}
+		br.close();
 		
-		return inatividades;
+		id = id+1;
+
+		BufferedWriter bw = new BufferedWriter(new FileWriter(inatividades, true));
+		bw.write(id + "|" + dataI + "|" + dataF + "|" + duracao);
+		bw.newLine();
+		bw.flush();
+		bw.close();
+	}
+	
+	public ArrayList<Inatividade> getInatividades() throws NumberFormatException, IOException{
+		ArrayList<Inatividade> res = new ArrayList<Inatividade>();
+
+		BufferedReader br = new BufferedReader(new FileReader(inatividades));
+		String ln = null;
+		while ((ln = br.readLine()) != null) {
+			String[] info = ln.split("\\|");
+			int id = Integer.parseInt(info[0]);
+			String dataI = info[1];
+			String dataF = info[2];
+			int duracao = Integer.parseInt(info[3]);
+			res.add(new Inatividade(id, dataI, dataF, duracao));
+		}
+		br.close();
+
+		return res;
 		
 	}
 

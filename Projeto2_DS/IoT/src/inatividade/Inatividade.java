@@ -5,14 +5,14 @@ public class Inatividade {
 	private int id;
 	private String dataInicio;
 	private String dataFim;
-	private String periodo;
+	private int duracao;
 	
 	
-	public Inatividade(int id, String dataInicio, String dataFim, String periodo) {
+	public Inatividade(int id, String dataInicio, String dataFim, int duracao) {
 		this.id = id;
 		this.dataInicio = dataInicio;
 		this.dataFim = dataFim;
-		this.periodo = periodo;
+		this.duracao = duracao;
 	}
 	
 	public String getDataInicio() {
@@ -23,8 +23,13 @@ public class Inatividade {
 		return dataFim;
 	}
 	
-	public String getPeriodo() {
-		return periodo;
+	public int getDuracao() {
+		return duracao;
+	}
+	
+	@Override
+	public String toString() {
+		return "inatividade durante " + duracao + " mn no periodo " + "[" + dataInicio + "," + dataFim + "]";
 	}
 
 }

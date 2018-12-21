@@ -31,4 +31,10 @@ public class Atividade extends Event{
 	public String getDivisao() {
 		return divisao;
 	}
+	
+	@Override
+	public String toString() {
+	
+		return "deteção de atividade na " + divisao + " no periodo " + "[" + dataInicio + "," + dataFim + "]";
+	}
 }
