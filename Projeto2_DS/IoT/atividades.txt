@@ -1,1 +1,8 @@
 1|10:00|21:00|quarto
+2|00:00|21:00|escritorio
+3|02:00|23:00|casa de banho
+4|02:00|21:00|cozinha
+5|02:00|20:00|cozinha
+6|02:00|19:00|quarto
+7|05:00|22:00|cozinha
+8|02:00|20:00|cozinha

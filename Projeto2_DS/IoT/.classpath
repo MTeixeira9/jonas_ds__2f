@@ -28,5 +28,23 @@
 	<classpathentry kind="lib" path="lib/starter-3.0.2-3.jar"/>
 	<classpathentry kind="lib" path="lib/annotations-12.0.jar"/>
 	<classpathentry kind="lib" path="lib/ormlite-jdbc-4.48.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Ana Carolina/Documents/GitHub/jonas_ds__2f/Projeto2_DS/IoT/lib/cmu_time_awb.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Ana Carolina/Documents/GitHub/jonas_ds__2f/Projeto2_DS/IoT/lib/cmu_us_kal.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Ana Carolina/Documents/GitHub/jonas_ds__2f/Projeto2_DS/IoT/lib/cmudict04.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Ana Carolina/Documents/GitHub/jonas_ds__2f/Projeto2_DS/IoT/lib/cmulex.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Ana Carolina/Documents/GitHub/jonas_ds__2f/Projeto2_DS/IoT/lib/cmutimelex.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Ana Carolina/Documents/GitHub/jonas_ds__2f/Projeto2_DS/IoT/lib/en_us.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Ana Carolina/Documents/GitHub/jonas_ds__2f/Projeto2_DS/IoT/lib/freetts.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Ana Carolina/Documents/GitHub/jonas_ds__2f/Projeto2_DS/IoT/lib/freetts-jsapi10.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Ana Carolina/Documents/GitHub/jonas_ds__2f/Projeto2_DS/IoT/lib/mbrola.jar"/>
+	<classpathentry kind="lib" path="lib/cmu_time_awb.jar"/>
+	<classpathentry kind="lib" path="lib/cmu_us_kal.jar"/>
+	<classpathentry kind="lib" path="lib/cmudict04.jar"/>
+	<classpathentry kind="lib" path="lib/cmulex.jar"/>
+	<classpathentry kind="lib" path="lib/cmutimelex.jar"/>
+	<classpathentry kind="lib" path="lib/en_us.jar"/>
+	<classpathentry kind="lib" path="lib/freetts-jsapi10.jar"/>
+	<classpathentry kind="lib" path="lib/freetts.jar"/>
+	<classpathentry kind="lib" path="lib/mbrola.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

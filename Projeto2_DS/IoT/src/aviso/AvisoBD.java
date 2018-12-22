@@ -17,8 +17,8 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import atividade.Atividade;
 import contactos.Contacto;
+import monitorAtividade.Atividade;
 
 public class AvisoBD {
 	

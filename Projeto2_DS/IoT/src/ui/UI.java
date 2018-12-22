@@ -10,9 +10,6 @@ import com.bezirk.middleware.java.proxy.BezirkMiddleware;
 import com.bezirk.middleware.messages.Event;
 import com.bezirk.middleware.messages.EventSet;
 
-import atividade.Atividade;
-import atividade.AtividadeBD;
-import atividade.AtividadeEvent;
 import aviso.Aviso;
 import aviso.AvisoBD;
 import botao.BotaoEvento;
@@ -21,8 +18,12 @@ import contactos.ContactoBD;
 import dispositivoVestivel.RunnableDevice;
 import i18n.I18N;
 import i18n.Messages;
-import inatividade.InatividadeBD;
-import inatividade.InatividadeEvent;
+import monitorAtividade.Atividade;
+import monitorAtividade.AtividadeBD;
+import monitorAtividade.AtividadeEvent;
+import monitorAtividade.InatividadeBD;
+import monitorAtividade.InatividadeEvent;
+import monitorAtividade.SensorAtividadeZirk;
 
 public class UI {
 	
@@ -149,13 +150,16 @@ public class UI {
 				System.out.println(I18N.getString(Messages.PEDE_OK));
 				String res = scAtiv.nextLine();
 				
-				//if (res.equals("ok"))
-				
 				break;
 			}
 			
 			//Simular um evento de inatividade
 			case 5: {
+				Scanner scInativ = new Scanner(System.in);
+				System.out.println(I18N.getString(Messages.SIMULAR_INATIV));
+				System.out.println(I18N.getString(Messages.PEDE_OK));
+				String res = scInativ.nextLine();
+				
 				break;
 			}
 			
