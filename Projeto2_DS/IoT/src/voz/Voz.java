@@ -9,7 +9,7 @@ public class Voz {
 	private Voice voz;
 	
 	public Voz() {
-		System.setProperty("mbrola.base", "mbrola2");
+		System.setProperty("mbrola.base", "mbrola");
 		this.vm = VoiceManager.getInstance();
 		this.voz = vm.getVoice("mbrola_us1");
 		voz.allocate();

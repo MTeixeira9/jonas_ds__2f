@@ -1,4 +1,4 @@
-package monitorAtividade;
+package bd;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -6,7 +6,10 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
+
+import monitorAtividade.Atividade;
 
 public class AtividadeBD {
 	
@@ -69,11 +72,30 @@ public class AtividadeBD {
 		
 	}
 
-	public static boolean atividadeDetetada(String divisao, String hora) {
-		// TODO Auto-generated method stub
-		return false;
+	public void delete(int idApagar) throws IOException {
+		BufferedReader brD = new BufferedReader(new FileReader(atividades));
+		File temp = new File (atividades.getAbsolutePath() + ".tmp");
+		PrintWriter pw = new PrintWriter(new FileWriter(temp));
+		String ln = null;
+		
+		while((ln = brD.readLine()) != null) {
+			
+			String [] split = ln.split("\\|");
+			int id = Integer.parseInt(split[0]);
+			
+			if(id != idApagar) {
+				pw.println(ln);
+				pw.flush();
+			}
+			
+		}
+		pw.close();
+		brD.close();
+		atividades.delete();
+		temp.renameTo(atividades);
+			
 	}
 	
-	//TODO atividadesDetetadas
+	
 
 }

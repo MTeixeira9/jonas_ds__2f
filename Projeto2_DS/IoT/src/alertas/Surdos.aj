@@ -2,9 +2,9 @@ package alertas;
 
 import com.bezirk.middleware.messages.Event;
 
+import bd.ContactoBD;
 import botao.BotaoEvento;
 import contactos.AvisoContactos;
-import contactos.ContactoBD;
 import i18n.I18N;
 import i18n.Messages;
 import luzes.LuzEnviada;

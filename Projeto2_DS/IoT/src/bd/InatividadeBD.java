@@ -1,4 +1,4 @@
-package monitorAtividade;
+package bd;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -15,6 +16,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import monitorAtividade.Inatividade;
 
 public class InatividadeBD {
 	
@@ -71,6 +74,30 @@ public class InatividadeBD {
 
 		return res;
 		
+	}
+	
+	public void delete(int idApagar) throws IOException {
+		BufferedReader brD = new BufferedReader(new FileReader(inatividades));
+		File temp = new File (inatividades.getAbsolutePath() + ".tmp");
+		PrintWriter pw = new PrintWriter(new FileWriter(temp));
+		String ln = null;
+		
+		while((ln = brD.readLine()) != null) {
+			
+			String [] split = ln.split("\\|");
+			int id = Integer.parseInt(split[0]);
+			
+			if(id != idApagar) {
+				pw.println(ln);
+				pw.flush();
+			}
+			
+		}
+		pw.close();
+		brD.close();
+		inatividades.delete();
+		temp.renameTo(inatividades);
+			
 	}
 
 }

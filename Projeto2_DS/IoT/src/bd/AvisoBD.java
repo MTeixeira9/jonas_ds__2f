@@ -1,4 +1,4 @@
-package aviso;
+package bd;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import botao.Aviso;
 import contactos.Contacto;
 import monitorAtividade.Atividade;
 

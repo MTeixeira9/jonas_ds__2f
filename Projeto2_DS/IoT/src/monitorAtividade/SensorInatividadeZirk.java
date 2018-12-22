@@ -8,6 +8,7 @@ import java.util.Random;
 import com.bezirk.middleware.Bezirk;
 import com.bezirk.middleware.java.proxy.BezirkMiddleware;
 
+import bd.InatividadeBD;
 import i18n.I18N;
 
 public class SensorInatividadeZirk {

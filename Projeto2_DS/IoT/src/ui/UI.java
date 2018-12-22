@@ -10,18 +10,17 @@ import com.bezirk.middleware.java.proxy.BezirkMiddleware;
 import com.bezirk.middleware.messages.Event;
 import com.bezirk.middleware.messages.EventSet;
 
-import aviso.Aviso;
-import aviso.AvisoBD;
+import bd.AtividadeBD;
+import bd.AvisoBD;
+import bd.ContactoBD;
+import bd.InatividadeBD;
+import botao.Aviso;
 import botao.BotaoEvento;
 import contactos.Contacto;
-import contactos.ContactoBD;
-import dispositivoVestivel.RunnableDevice;
 import i18n.I18N;
 import i18n.Messages;
 import monitorAtividade.Atividade;
-import monitorAtividade.AtividadeBD;
 import monitorAtividade.AtividadeEvent;
-import monitorAtividade.InatividadeBD;
 import monitorAtividade.InatividadeEvent;
 import monitorAtividade.SensorAtividadeZirk;
 
@@ -58,11 +57,10 @@ public class UI {
 
 	public static void main(String[] args) throws IOException {
 		UI ui = new UI();
-		RunnableDevice rd = new RunnableDevice();
-		start(rd);
+		start();
 	}
 
-	private static void start(RunnableDevice rd) throws IOException {
+	private static void start() throws IOException {
 
 		//Iniciar BDs
 		AtividadeBD ativBD = null;

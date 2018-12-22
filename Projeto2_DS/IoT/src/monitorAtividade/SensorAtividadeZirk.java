@@ -9,6 +9,7 @@ import java.util.Scanner;
 import com.bezirk.middleware.Bezirk;
 import com.bezirk.middleware.java.proxy.BezirkMiddleware;
 
+import bd.AtividadeBD;
 import i18n.I18N;
 
 public class SensorAtividadeZirk {
