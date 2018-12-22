@@ -1,23 +1,62 @@
 package ui;
 
+import java.util.List;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import com.bezirk.middleware.Bezirk;
+import com.bezirk.middleware.java.proxy.BezirkMiddleware;
+import com.bezirk.middleware.messages.Event;
+import com.bezirk.middleware.messages.EventSet;
+
 import atividade.Atividade;
 import atividade.AtividadeBD;
+import atividade.AtividadeEvent;
 import aviso.Aviso;
 import aviso.AvisoBD;
+import botao.BotaoEvento;
 import contactos.Contacto;
 import contactos.ContactoBD;
 import dispositivoVestivel.RunnableDevice;
 import i18n.I18N;
 import i18n.Messages;
 import inatividade.InatividadeBD;
+import inatividade.InatividadeEvent;
 
 public class UI {
+	
+	private Bezirk bezirk;
+	
+	public UI() {
+		BezirkMiddleware.initialize();
+		bezirk = BezirkMiddleware.registerZirk("UI");
+	
+		List<Class<? extends Event>> eventosSubsc = new ArrayList<>();
+		eventosSubsc.add(BotaoEvento.class);
+		eventosSubsc.add(AtividadeEvent.class);
+		eventosSubsc.add(InatividadeEvent.class);
+		
+		final EventSet eventosSubscritos = new EventSet(converteArray(eventosSubsc));
+		UIRecetorEventos recEv = new UIRecetorEventos();
+		eventosSubscritos.setEventReceiver(recEv);
+		bezirk.subscribe(eventosSubscritos);
+		
+	}
+
+	private Class<? extends Event>[] converteArray(List<Class<? extends Event>> e) {
+		@SuppressWarnings("unchecked")
+		Class<? extends Event> [] res = new Class[e.size()];
+		int i = 0;
+		for(Class<? extends Event> classe: e) {
+			res[i]=classe;
+			i++;
+		}
+		return res;
+	}
 
 	public static void main(String[] args) throws IOException {
+		UI ui = new UI();
 		RunnableDevice rd = new RunnableDevice();
 		start(rd);
 	}
@@ -105,7 +144,12 @@ public class UI {
 			
 			//Simular evento de atividade
 			case 4: {
+				Scanner scAtiv = new Scanner(System.in);
+				System.out.println(I18N.getString(Messages.SIMULAR_ATIV));
+				System.out.println(I18N.getString(Messages.PEDE_OK));
+				String res = scAtiv.nextLine();
 				
+				//if (res.equals("ok"))
 				
 				break;
 			}
@@ -130,7 +174,8 @@ public class UI {
 			
 		}
 		
-		
+		sc.close();
+		System.exit(1);
 		
 	}
 

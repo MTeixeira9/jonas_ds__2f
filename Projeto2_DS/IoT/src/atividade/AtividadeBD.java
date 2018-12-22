@@ -68,6 +68,11 @@ public class AtividadeBD {
 		
 		
 	}
+
+	public static boolean atividadeDetetada(String divisao, String hora) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 	
 	//TODO atividadesDetetadas
 
