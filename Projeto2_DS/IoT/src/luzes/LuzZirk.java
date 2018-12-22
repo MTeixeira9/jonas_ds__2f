@@ -18,23 +18,20 @@ public class LuzZirk {
 	public LuzZirk() {
 		BezirkMiddleware.initialize();
 		bezirk = BezirkMiddleware.registerZirk("Luzes Zirk");
-		luz.setEventReceiver(new EventSet.EventReceiver() {
-			
+		luz.setEventReceiver(new EventSet.EventReceiver() {			
 			@Override
 			public void receiveEvent(Event e, ZirkEndPoint zep) {
-				System.err.println("Luzes ligadas");
-				
+				LuzEvento l = (LuzEvento) e;
+				System.err.println("Luz " + l.getCor() + " ligada - Alerta recebido");
 			}
 		});
 		bezirk.subscribe(luz);
-		
-	
 	}
 
 
 	public static void main(String[] args) {
 		LuzZirk l = new LuzZirk();
-		System.err.println("Luz Zirck recebida!");
+		System.err.println("Luz Zirck ativado!");
 	}
 
 }

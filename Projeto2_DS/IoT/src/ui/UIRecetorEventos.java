@@ -22,7 +22,7 @@ public class UIRecetorEventos implements EventReceiver{
 		}
 		
 		if(e instanceof BotaoEvento) {
-			System.out.println("Recebi um evento de BOTÃO!!!");
+			System.out.println("Recebi um evento de Botão!!!");
 		}
 		
 		

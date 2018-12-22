@@ -4,20 +4,18 @@ import com.sun.speech.freetts.VoiceManager;
 
 public class Voz {
 
-	//nome da voz que vamos usar
-	private String nome; 
-	
+	private VoiceManager vm;	
 	//criar instancia de Voice
 	private Voice voz;
 	
-	public Voz(String nome) {
+	public Voz() {
 		System.setProperty("mbrola.base", "mbrola2");
-		this.nome = nome;
-		this.voz = VoiceManager.getInstance().getVoice(this.nome);
-		this.voz.allocate();
+		this.vm = VoiceManager.getInstance();
+		this.voz = vm.getVoice("mbrola_us1");
+		voz.allocate();
 	}
 	
 	public void falar(String texto) {
-		this.voz.speak(texto);
+		voz.speak(texto);
 	}
 }

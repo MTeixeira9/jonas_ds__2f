@@ -42,7 +42,6 @@ public class AvisoBD {
 			e.printStackTrace();
 		}
 		
-		
 	}
 	
 	public void insert(String msg, String dataI, String dataF, String period) throws IOException {
