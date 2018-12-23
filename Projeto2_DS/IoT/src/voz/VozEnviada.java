@@ -3,9 +3,6 @@ package voz;
 import com.bezirk.middleware.Bezirk;
 import com.bezirk.middleware.java.proxy.BezirkMiddleware;
 
-import luzes.LuzEnviada;
-import luzes.LuzEvento;
-
 public class VozEnviada {
 
 	private Bezirk bezirk;

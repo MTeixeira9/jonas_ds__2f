@@ -36,4 +36,8 @@ public class Atividade extends Event{
 	public String toString() {	
 		return "deteção de atividade na " + divisao + " no periodo " + "[" + dataInicio + "," + dataFim + "]";
 	}
+	
+	public String toStringUI() {	
+		return id + "---> " + "Atividade na divisao " + divisao + " no periodo " + "[" + dataInicio + "," + dataFim + "]";
+	}
 }

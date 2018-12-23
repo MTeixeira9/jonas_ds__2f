@@ -1,4 +1,4 @@
-package luzes;
+package luz;
 
 import com.bezirk.middleware.Bezirk;
 import com.bezirk.middleware.java.proxy.BezirkMiddleware;

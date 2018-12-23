@@ -1,4 +1,4 @@
-package bd;
+package monitorAtividade;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -8,8 +8,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-
-import monitorAtividade.Atividade;
 
 public class AtividadeBD {
 	

@@ -1,4 +1,4 @@
-package bd;
+package monitorAtividade;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -16,8 +16,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import monitorAtividade.Inatividade;
 
 public class InatividadeBD {
 	

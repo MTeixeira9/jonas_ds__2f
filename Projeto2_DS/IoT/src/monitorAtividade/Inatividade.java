@@ -31,5 +31,9 @@ public class Inatividade {
 	public String toString() {
 		return "inatividade durante " + duracao + " mn no periodo " + "[" + dataInicio + "," + dataFim + "]";
 	}
+	
+	public String toStringUI() {
+		return id + "---> " +  "inatividade durante " + duracao + "mn no periodo " + "[" + dataInicio + "," + dataFim + "]";
+	}
 
 }

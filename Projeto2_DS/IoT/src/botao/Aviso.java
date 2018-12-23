@@ -1,6 +1,9 @@
 package botao;
 
-import java.sql.Date;
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 public class Aviso {
 	
@@ -8,14 +11,14 @@ public class Aviso {
 	private String msg;
 	private String dataInicio;
 	private String dataFim;
-	private int periodicidade;
+	private long periodicidade;
 	
-	public Aviso(int id, String msg, String dataInicio, String dataFim, int periodicidade) {
+	public Aviso(int id, String msg, String dataInicio, String dataFim, long periodicidade) {
 		this.id = id;
 		this.msg = msg;
 		this.dataInicio = dataInicio;
 		this.dataFim = dataFim;
-		this.periodicidade = periodicidade;
+		this.periodicidade = periodicidade*60000;
 	}
 	
 	public String getMsg() {
@@ -30,7 +33,7 @@ public class Aviso {
 		return dataInicio;
 	}
 	
-	public int getPeriodicidade() {
+	public long getPeriodicidade() {
 		return periodicidade;
 	}
 	
@@ -41,6 +44,24 @@ public class Aviso {
 	@Override
 	public String toString() {
 		return this.id + "--->" + this.msg + " de " + this.dataInicio + " ate " + this.dataFim;
+	}
+	
+	public String toStringTimer() {
+		return this.id + "--->" + this.msg + " de " + this.dataInicio + " ate " + this.dataFim;
+	}
+	
+
+	public boolean ehValido() throws ParseException {
+		DateFormat format = new SimpleDateFormat("dd-MM-yy HH:mm");
+		Date inicio = format.parse(dataInicio);
+		Date fim = format.parse(dataFim);
+		Date d = new Date();
+		
+		if(d.after(inicio) && d.before(fim)) {
+			return true;
+		}
+		
+		return false;
 	}
 	
 }

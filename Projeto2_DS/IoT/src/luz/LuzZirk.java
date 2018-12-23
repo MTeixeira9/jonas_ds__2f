@@ -1,4 +1,4 @@
-package luzes;
+package luz;
 
 import static i18n.Messages.DEVICE_RUNNING;
 

@@ -1,4 +1,4 @@
-package bd;
+package botao;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import botao.Aviso;
 import contactos.Contacto;
 import monitorAtividade.Atividade;
 
@@ -45,7 +44,7 @@ public class AvisoBD {
 		
 	}
 	
-	public void insert(String msg, String dataI, String dataF, String period) throws IOException {
+	public int insert(String msg, String dataI, String dataF, String period) throws IOException {
 		
 		BufferedReader br = new BufferedReader(new FileReader(avisos));
 		int id = 0;
@@ -62,6 +61,8 @@ public class AvisoBD {
 		bw.newLine();
 		bw.flush();
 		bw.close();
+		
+		return id;
 		
 	}
 	

@@ -25,7 +25,7 @@ public class Contacto {
 	}
 	
 	public String toString() {
-		return nome + " : " + numero;
+		return id + "---> " + nome + " : " + numero;
 	}
 
 }

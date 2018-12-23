@@ -2,12 +2,12 @@ package alertas;
 
 import com.bezirk.middleware.messages.Event;
 
-import bd.ContactoBD;
 import botao.BotaoEvento;
 import contactos.AvisoContactos;
+import contactos.ContactoBD;
 import i18n.I18N;
 import i18n.Messages;
-import luzes.LuzEnviada;
+import luz.LuzEnviada;
 import monitorAtividade.AtividadeEvent;
 import monitorAtividade.InatividadeEvent;
 import ui.UIRecetorEventos;
@@ -28,6 +28,9 @@ public aspect Surdos {
 			try {
 				AvisoContactos alertaC = new AvisoContactos();
 				alertaC.mandarSMSparaContactos(new ContactoBD(), I18N.getString(Messages.MSG_ALERTA_BOTAO));
+				LuzEnviada l = new LuzEnviada("amarela");
+				l.enviarLuz();
+				System.out.println("LUZ AMARELA ACESA - após botao pressionado");
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}

@@ -5,8 +5,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import bd.ContactoBD;
-
 public class AvisoContactos {
 	
 	private ArrayList<Contacto> contactos;

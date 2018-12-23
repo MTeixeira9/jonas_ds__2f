@@ -1,4 +1,4 @@
-package luzes;
+package luz;
 
 import com.bezirk.middleware.messages.Event;
 

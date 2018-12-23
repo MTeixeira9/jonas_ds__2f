@@ -1,20 +1,2 @@
-1|10:00|21:00|quarto
-2|00:00|21:00|escritorio
-3|02:00|23:00|casa de banho
-4|02:00|21:00|cozinha
-5|02:00|20:00|cozinha
-6|02:00|19:00|quarto
-7|05:00|22:00|cozinha
-8|02:00|20:00|cozinha
-9|10:00|19:00|cozinha
-10|00:00|19:00|casa de banho
-11|05:00|19:00|cozinha
-12|08:00|22:00|casa de banho
-13|10:00|22:00|sala
-14|02:00|19:00|casa de banho
-15|02:00|22:00|escritorio
-16|10:00|21:00|cozinha
-17|10:00|20:00|escritorio
-18|02:00|23:00|cozinha
-19|08:00|20:00|casa de banho
-20|08:00|20:00|cozinha
+1|08:00|22:00|casa de banho
+2|10:00|19:00|cozinha
