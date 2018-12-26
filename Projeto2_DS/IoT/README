@@ -1,0 +1,27 @@
+Para correr o produto 1: produto com interface em inglês para cegos com monitor de atividade
+1. Carregar com o botão direito do rato em atividadeVoz.jproperties 
+		> AspectJ Tools > Apply Build Configuration
+2. Correr a classe UI.java
+3. Escolher a opção 5 ou 7 e seguir os passos indicados.
+(Este produto dá um erro no final quando a voz acaba, não conseguimos resolver)
+
+
+Para correr o produto 2: produto com interface em inglês para cegos com funcionalidade botão
+1. Carregar com o botão direito do rato em botaoCegos.jproperties 
+		> AspectJ Tools > Apply Build Configuration
+2. Correr a classe UI.java
+3. Escolher a opção 9 e seguir os passos indicados.
+
+
+Para correr o produto 3: produto com interface em inglês para surdos com monitor de atividade
+1. Carregar com o botão direito do rato em atividadeLuz.jproperties 
+		> AspectJ Tools > Apply Build Configuration
+2. Correr a classe UI.java
+3. Escolher a opção 5 ou 7 e seguir os passos indicados.
+
+
+Para correr o produto 4: produto com interface em inglês para surdos com funcionalidade botão
+1. Carregar com o botão direito do rato em botaoSurdos.jproperties 
+		> AspectJ Tools > Apply Build Configuration
+2. Correr a classe UI.java
+3. Escolher a opção 9 e seguir os passos indicados.

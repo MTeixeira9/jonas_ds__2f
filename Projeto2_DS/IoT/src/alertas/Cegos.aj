@@ -22,7 +22,7 @@ public aspect Cegos {
 			System.out.println("Voz ativada - após atividade detetada"); 
 
 		}else if(e instanceof InatividadeEvent) {
-			VozEnviada voz = new VozEnviada("Alert! It's been while snce i saw you moving");
+			VozEnviada voz = new VozEnviada("Alert! It's been while since i saw you moving");
 			voz.enviarVoz();
 			System.out.println("Voz ativada - após período de inatividade"); 
 		}else if(e instanceof BotaoEvento) {
