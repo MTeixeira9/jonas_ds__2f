@@ -1,3 +1,15 @@
+Para criar contactos 
+	1. Correr a classe UI.java e escolher a opcao 1 do menu.
+Para apagar contactos 
+	1. Correr a classe UI.java e escolher a opcao 2 do menu.
+Para criar Avisos 
+	1. Correr a classe UI.java e escolher a opcao 3 do menu.
+Para apagar Avisos 
+	1. Correr a classe UI.java e escolher a opcao 4 do menu.
+
+Depois de criar contactos/avisos estes irão estar armazenados nos ficheiros contactos.txt e avisos.txt
+_______________________________________________________________________________________________
+
 Para correr o produto 1: produto com interface em inglês para cegos com monitor de atividade
 1. Carregar com o botão direito do rato em atividadeVoz.jproperties 
 		> AspectJ Tools > Apply Build Configuration
@@ -25,3 +37,6 @@ Para correr o produto 4: produto com interface em inglês para surdos com funcion
 		> AspectJ Tools > Apply Build Configuration
 2. Correr a classe UI.java
 3. Escolher a opção 9 e seguir os passos indicados.
+
+____________________________________________________________________________________________________
+Os eventos de atividade/inatividade que forem gerados ficam armazendos nos ficheiros atividades.txt e inatividades.txt
